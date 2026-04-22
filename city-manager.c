@@ -44,6 +44,26 @@ int main(int argc, char *argv[]) {
     else if (strcmp(command, "list") == 0) {
         list_reports(district, role);
     }
+    else if (strcmp(command, "view") == 0) {
+        // Verificăm dacă avem și ID-ul raportului în argv
+        if (argc < 6) { printf("Lipsește ID-ul raportului!\n"); return 1; }
+        view_report(district, atoi(argv[argc-1]), role);
+    }
+    else if (strcmp(command, "remove_report") == 0) {
+        if (argc < 6) { printf("Lipsește ID-ul raportului!\n"); return 1; }
+        remove_report(district, atoi(argv[argc-1]), role);
+    }
+    else if (strcmp(command, "filter") == 0) {
+        // Comanda de filter va fi mai complexă, o lăsăm pentru pasul cu AI
+        printf("Comanda filter va fi activată după integrarea AI.\n");
+    }
+    else if (strcmp(command, "filter") == 0) {
+        if (argc < 6) {
+            printf("Utilizare: filter <district> <conditie>\n");
+        } else {
+            filter_reports(district, argv[argc-1]);
+        }
+    }
     else {
         printf("Nu exista comanda asta !!! %s\n", command);
     }

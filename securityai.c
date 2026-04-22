@@ -30,12 +30,38 @@ int check_permission(const char *path, Role role, mode_t required_bit) {
     }
     return 0;
 }
-    // Funcții temporare (Stubs) ca să putem compila
+   //dau split in 3parti
 int parse_condition(const char *input, char *field, char *op, char *value) {
-    return 0; 
+    char temp[100];
+    strncpy(temp, input, 99);
+    
+    char *token = strtok(temp, ":");
+    if (!token) return 0;
+    strcpy(field, token);
+    
+    token = strtok(NULL, ":");
+    if (!token) return 0;
+    strcpy(op, token);
+    
+    token = strtok(NULL, ":");
+    if (!token) return 0;
+    strcpy(value, token);
+    
+    return 1;
 }
 
+
 int match_condition(Report *r, const char *field, const char *op, const char *value) {
+    if (strcmp(field, "severity") == 0) {
+        int val = atoi(value);
+        if (strcmp(op, ">") == 0) return r->severity > val;
+        if (strcmp(op, ">=") == 0) return r->severity >= val;
+        if (strcmp(op, "<") == 0) return r->severity < val;
+        if (strcmp(op, "<=") == 0) return r->severity <= val;
+        if (strcmp(op, "==") == 0) return r->severity == val;
+    } else if (strcmp(field, "category") == 0) {
+        if (strcmp(op, "==") == 0) return strcmp(r->category, value) == 0;
+    }
     return 0;
 }
 

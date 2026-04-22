@@ -34,4 +34,7 @@ void add_report(const char *district, const char *user, Role role);
 void list_reports(const char *district, Role role);
 int check_permission(const char *path, Role role, mode_t required_bit);
 void get_mode_string(mode_t mode, char *str);
+void view_report(const char *district, int id, Role role);
+void remove_report(const char *district, int id, Role role);
+void filter_reports(const char *district, const char *condition);
 #endif

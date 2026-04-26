@@ -37,4 +37,6 @@ void get_mode_string(mode_t mode, char *str);
 void view_report(const char *district, int id, Role role);
 void remove_report(const char *district, int id, Role role);
 void filter_reports(const char *district, const char *condition);
+int parse_condition(const char *input, char *field, char *op, char *value);
+int match_condition(Report *r, const char *field, const char *op, const char *value);
 #endif
